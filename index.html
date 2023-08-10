@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title> AMMW App by PK </title>
+		<style>
+			* { font-size:125%; }
+			h1 { background-color:black; color:white;
+				width:50%; border-radius:30px; }
+			body { background-color: lightblue; }
+		</style>
+	</head>
+
+	<body>
+		<center>
+			<h1> Automatic Motivational Msg App </h1>
+			<form onsubmit = "getmsg()">
+				<input type = "submit" value = "Get Message" />	
+			</form>
+			<h1 id = "ans"> </h1>
+
+			<script>
+			function getmsg()
+			{
+				let ans = document.getElementById("ans");
+				let url = "https://api.quotable.io/random";
+				fetch(url)
+				.then(res => res.json())
+				.then(data => ans.innerHTML = data.content  + " - " + data.author)
+				.catch(err => ans.innerHTML = "Issue" + err);
+			}
+			
+			setInterval(getmsg,10000)
+			</script>
+		</center> 
+	</body>
+</html>
